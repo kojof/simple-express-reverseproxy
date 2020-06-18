@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reverseproxy
+  labels:
+    app: reverseproxy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: reverseproxy
+  template:
+    metadata:
+      labels:
+        app: reverseproxy
+    spec:
+      containers:
+      - name: reverseproxy
+        image: kojof/simple-reverse-proxy
+        ports:
+        - containerPort: 8080
+
+
+
+
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: reverseproxy
+# spec:
+#   replicas: 2
+#   selector:
+#     matchLabels:
+#       app: reverseproxy
+#   template:
+#     metadata:
+#         labels: # labels to select/identify the deployment
+#         app: reverseproxy
+#     spec:
+#       containers:
+#       - image: kojof/simple-reverse-proxy
+#         name: reverseproxy
+#         imagePullPolicy: Always                     
+#         ports:
+#         - containerPort: 8080
+#       restartPolicy: Always
